@@ -1,2 +1,28 @@
-<h1>Categories#show</h1>
-<p>Find me in app/views/categories/show.html.erb</p>
+<%= button_to 'Créer un nouvel item', new_category_item_path(@category), method: :get  %>
+
+  <%= button_to 'Accueil', root_path, method: :get %>
+
+
+
+
+<div class="card-container">
+  <% @items.each do |item| %>
+    <div class="card">
+      <% if item.photos.present? %>
+        <% if item.photos.attached? %>
+          <% item.photos.each do |photo| %>
+            <%= image_tag rails_blob_path(photo, only_path: true), class: "card-image" %>
+          <% end %>
+        <% end %>
+      <% end %>
+      <div class="card-content">
+        <h2><center><%= item.name %></center></h2>
+        <p><%= item.description %></p>
+        <div class="button-container">
+          <%= button_to "Supprimer", category_item_path(category_id: @category.id, id: item.id), method: :delete, data: { confirm: 'Êtes-vous sûr?' } %>
+          <%= button_to "Modifier", edit_category_item_path(category_id: @category.id, id: item.id), method: :get %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
