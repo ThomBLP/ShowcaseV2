@@ -10,6 +10,8 @@
   height: 450px;
   object-fit: cover;
   padding: 0 ;
+  display:block;
+  overflow: hidden;
 }
 
 .card-content {
