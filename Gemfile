@@ -28,6 +28,13 @@ gem "jbuilder"
 
 gem "simple_form"
 
+gem "bootstrap", "~> 5.3.2"
+
+gem "dartsass-rails", "~> 0.3.0"
+
+gem "sassc-rails"
+
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
