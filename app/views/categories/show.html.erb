@@ -4,35 +4,35 @@
 
 
 <div class="card-container">
-        <% @items.each_with_index do |item, index| %>
-  <div class="card-large">
-    <div class="card-image">
-    <div id="carouselitem-<%= index %>" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
-            <% if item.photos.present? && item.photos.attached? %>
-              <% item.photos.each_with_index do |photo, index_photo| %>
-                <div class="carousel-item <%= index_photo == 0 ? 'active' : '' %>">
-                  <%= image_tag rails_blob_path(photo, only_path: true), class: "d-block w-100", alt: item.name %>
-                </div>
-              <% end %>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselitem-<%= index %>" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselitem-<%= index %>" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-    </div>
+  <% @items.each_with_index do |item, index| %>
+    <div class="card-large">
+      <div id="carouselitem-<%= index %>" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <% if item.photos.present? && item.photos.attached? %>
+            <% item.photos.each_with_index do |photo, index_photo| %>
+              <div class="carousel-item <%= index_photo == 0 ? 'active' : '' %>">
+                <%= image_tag rails_blob_path(photo, only_path: true), class: "d-block w-100 card-image", alt: item.name %>
+              </div>
             <% end %>
-  </div>
-  <div class="card-content">
-          <h1><center><%= item.name %></center></h1>
-          <p><center><%= item.description %></center></p>
-
-
+          <% end %>
         </div>
-  </div>
-        <% end %>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselitem-<%= index %>" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselitem-<%= index %>" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      <div class="card-content">
+        <h1><center><%= item.name %></center></h1>
+        <p><center><%= item.description %></center></p>
+        <div class="button-container">
+          <%= button_to "Supprimer", category_item_path(category_id: @category.id, id: item.id), method: :delete, data: { confirm: 'Êtes-vous sur?' } %>
+          <%= button_to "Modifier", edit_category_item_path(category_id: @category.id, id: item.id), method: :get %>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </div>
