@@ -1,13 +1,4 @@
-<%= button_to 'Créer un nouvel item', new_category_item_path(@category), method: :get, class:"btn btn-primary"  %>
-
-  <%= button_to 'Accueil', root_path, method: :get, class:"btn btn-primary" %>
-
-  <div class="search-container">
-  <%= form_tag(category_items_path(@category), method: :get) do %>
-    <%= text_field_tag :search, params[:search], placeholder: "Rechercher dans le nom ou la description" %>
-    <%= submit_tag "Rechercher", class: "btn btn-primary" %>
-  <% end %>
-</div>
+  <%= button_to 'Retour', category_path(@category), method: :get, class:"btn btn-primary" %>
 
 
 <div class="card-container">

@@ -16,7 +16,15 @@ class ItemsController < ApplicationController
   end
 
   def index
-    @items = Item.all
+    @category = Category.find(params[:category_id])
+    @items = @category.items
+
+    if params[:search].present?
+      search_term = "%#{params[:search].downcase}%"
+      @items = @items.where("LOWER(name) LIKE ? OR LOWER(description) LIKE ?", search_term, search_term)
+    else
+      @items = []
+    end
   end
 
   def show
