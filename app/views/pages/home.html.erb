@@ -12,12 +12,11 @@
           <h1><center><%= category.name %></center></h1>
           <div class="button-container">
             <%= button_to 'Voir les objets', category_path(category.id), method: :get, class:"btn btn-primary" %>
-            <%= button_to "Supprimer", category_url(category), method: :delete, data: { confirm: 'Êtes-vous sur?' }, class:"btn btn-primary"%>
-            <%= button_to 'Modifier', edit_category_path(category), method: :get, class:"btn btn-primary" %>
+            <%= button_to "Supprimer", category_url(category), method: :delete, data: { confirm: 'Êtes-vous sur?' }, class:"btn btn-danger"%>
+            <%= button_to 'Modifier', edit_category_path(category), method: :get, class:"btn btn-warning" %>
           </div>
         </div>
         <% end %>
       </div>
     <% end %>
   </div>
-
