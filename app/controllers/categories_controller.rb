@@ -21,7 +21,7 @@ class CategoriesController < ApplicationController
   def show
     @category = Category.find(params[:id])
 
-    @items = @category.items
+    @items = @category.items.paginate(page: params[:page], per_page: 20)
   end
 
 
@@ -50,4 +50,3 @@ private
 def category_params
   params.require(:category).permit(:name, :description, :photo)
 end
-

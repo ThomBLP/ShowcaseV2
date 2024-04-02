@@ -2,13 +2,15 @@
 
   <%= button_to 'Accueil', root_path, method: :get, class:"btn btn-primary" %>
 
-  <div class="search-container">
-  <%= form_tag(category_items_path(@category), method: :get) do %>
-    <%= text_field_tag :search, params[:search], placeholder: "Rechercher dans le nom ou la description" %>
+<div class="search-container">
+  <%= form_tag(category_items_path(@category), method: :get, id: "search-form") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Rechercher dans le nom ou la description", id: "search-input" %>
+
+    <%= select_tag :search_in, options_for_select([['Nom', 'name'], ['Description', 'description']], params[:search_in]), { include_blank: 'Tous les champs', id: "search-in" } %>
+
     <%= submit_tag "Rechercher", class: "btn btn-primary" %>
   <% end %>
 </div>
-
 
 <div class="card-container">
   <% @items.each_with_index do |item, index| %>
@@ -43,3 +45,5 @@
     </div>
   <% end %>
 </div>
+
+<%= will_paginate @items %>
