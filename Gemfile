@@ -34,6 +34,8 @@ gem "dartsass-rails", "~> 0.3.0"
 
 gem "sassc-rails"
 
+gem "will_paginate", "~> 3.3"
+
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"

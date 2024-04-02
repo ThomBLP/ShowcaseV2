@@ -20,10 +20,17 @@ class ItemsController < ApplicationController
     @items = @category.items
 
     if params[:search].present?
-      search_term = "%#{params[:search].downcase}%"
-      @items = @items.where("LOWER(name) LIKE ? OR LOWER(description) LIKE ?", search_term, search_term)
-    else
-      @items = []
+      search_term = "#{params[:search].downcase}%" # Ajoutez % pour rechercher les mots commençant par la recherche
+      search_field = params[:search_in] # Champ de recherche sélectionné
+
+      case search_field
+      when 'name'
+        @items = @items.where("LOWER(name) LIKE ?", search_term)
+      when 'description'
+        @items = @items.where("LOWER(description) LIKE ?", "%#{params[:search].downcase}%")
+      else
+        @items = @items.where("LOWER(name) LIKE ? OR LOWER(description) LIKE ?", search_term, "%#{params[:search].downcase}%")
+      end
     end
   end
 
